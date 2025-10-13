@@ -1,75 +1,82 @@
-import { useState } from "react";
-import { registerUser, loginUser, logoutUser } from "../firebase/authService";
+import { useState } from "react"
+import { registerUser, loginUser } from "../firebase/authService"
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom"
 
 export default function AuthPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+  const [isLogin, setIsLogin] = useState(true)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
-  const handleRegister = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError("")
+    setLoading(true)
     try {
-      const newUser = await registerUser(email, password);
-      setUser(newUser);
-      alert("Registered Successfully!");
+      if (isLogin) {
+        await loginUser(email, password)
+      } else {
+        await registerUser(email, password)
+      }
+      navigate("/") // Redirect to landing page after success
     } catch (err) {
-      alert("Error: " + err.message);
+      setError(err.message)
     }
-  };
-
-  const handleLogin = async () => {
-    try {
-      const loggedInUser = await loginUser(email, password);
-      setUser(loggedInUser);
-      alert("Logged In!");
-    } catch (err) {
-      alert("Error: " + err.message);
-    }
-  };
-
-  const handleLogout = async () => {
-    await logoutUser();
-    setUser(null);
-    alert("Logged Out");
-  };
+    setLoading(false)
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h2 className="text-3xl font-semibold mb-6 text-blue-600">
-        LocalKart Authentication
-      </h2>
-
-      <input
-        type="email"
-        placeholder="Email"
-        className="mb-3 p-2 border border-gray-300 rounded-md w-72"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        className="mb-3 p-2 border border-gray-300 rounded-md w-72"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <div className="flex gap-3 mt-4">
-        <button onClick={handleRegister} className="bg-green-500 text-white px-4 py-2 rounded-md">
-          Sign Up
-        </button>
-        <button onClick={handleLogin} className="bg-blue-500 text-white px-4 py-2 rounded-md">
-          Login
-        </button>
-        <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-md">
-          Logout
-        </button>
-      </div>
-
-      {user && (
-        <p className="mt-5 text-green-700">
-          Logged in as: {user.email}
-        </p>
-      )}
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <Card className="w-full max-w-md shadow-2xl border border-gray-200">
+        <CardHeader>
+          <CardTitle className="text-3xl font-semibold text-center">
+            {isLogin ? "Welcome Back to LocalKart" : "Create an Account"}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Input
+              type="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="text-lg py-2"
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="text-lg py-2"
+            />
+            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full text-lg py-3 mt-2"
+            >
+              {loading ? "Please wait..." : isLogin ? "Login" : "Sign Up"}
+            </Button>
+          </form>
+        </CardContent>
+        <CardFooter className="flex justify-center">
+          <button
+            onClick={() => setIsLogin(!isLogin)}
+            className="text-blue-600 hover:underline mt-2 text-sm"
+          >
+            {isLogin
+              ? "New here? Create an account"
+              : "Already have an account? Log in"}
+          </button>
+        </CardFooter>
+      </Card>
     </div>
-  );
+  )
 }

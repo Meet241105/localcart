@@ -1,9 +1,29 @@
 "use client"
-import { useState } from "react"
-import { ShoppingCart, User, Menu } from "lucide-react"
+import { useState, useEffect } from "react"
+import { ShoppingCart, User, Menu, LogOut } from "lucide-react"
+import { logoutUser } from "@/firebase/authService"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "@/firebase/config"
+import { useNavigate } from "react-router-dom"
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [user, setUser] = useState(null)
+  const navigate = useNavigate()
+
+  // Detect auth state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+    })
+    return () => unsubscribe()
+  }, [])
+
+  // Logout
+  const handleLogout = async () => {
+    await logoutUser()
+    navigate("/auth")
+  }
 
   const categories = [
     "Home & Decor",
@@ -20,7 +40,10 @@ export function Navbar() {
       {/* Top Section */}
       <div className="flex items-center justify-between px-4 sm:px-8 py-3">
         {/* Left - Logo */}
-        <div className="flex items-center gap-2">
+        <div
+          className="flex items-center gap-2 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           <img
             src="/logo.png"
             alt="LocalKart Logo"
@@ -45,14 +68,31 @@ export function Navbar() {
 
         {/* Right - Icons */}
         <div className="flex items-center gap-4">
-          <button className="flex items-center gap-1 hover:text-emerald-600">
-            <User size={20} />
-            <span className="hidden sm:inline text-sm">Login</span>
-          </button>
+          {user ? (
+            <>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1 hover:text-red-600"
+              >
+                <LogOut size={20} />
+                <span className="hidden sm:inline text-sm">Logout</span>
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => navigate("/auth")}
+              className="flex items-center gap-1 hover:text-emerald-600"
+            >
+              <User size={20} />
+              <span className="hidden sm:inline text-sm">Login</span>
+            </button>
+          )}
+
           <button className="flex items-center gap-1 hover:text-emerald-600">
             <ShoppingCart size={20} />
             <span className="hidden sm:inline text-sm">Cart</span>
           </button>
+
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="sm:hidden p-2 rounded-md border border-gray-300"
