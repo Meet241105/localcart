@@ -1,11 +1,15 @@
-import AuthPage from "./pages/AuthPage";
+import { Navbar } from "./components/layout/Navbar"
+import { HeroSection } from "./components/layout/HeroSection"
+import { Footer } from "./components/layout/Footer"
 
 function App() {
   return (
-    <div>
-      <AuthPage />
-    </div>
-  );
+    <>
+      <Navbar />
+      <HeroSection />
+      <Footer />
+    </>
+  )
 }
 
-export default App;
+export default App
