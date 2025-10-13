@@ -1,23 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "./firebase/config"
+import { auth } from "@/firebase/config"
 
-import { Navbar } from "./components/layout/Navbar"
-import { HeroSection } from "./components/layout/HeroSection"
-import { Footer } from "./components/layout/Footer"
-import AuthPage from "./pages/AuthPage"
-
-// Landing page layout (shown after login)
-function LandingPage() {
-  return (
-    <>
-      <Navbar />
-      <HeroSection />
-      <Footer />
-    </>
-  )
-}
+import AuthPage from "@/pages/AuthPage"
+import HomePage from "@/pages/HomePage"
 
 export default function App() {
   const [user, setUser] = useState(null)
@@ -41,17 +28,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Landing page */}
-        <Route
-          path="/"
-          element={user ? <LandingPage /> : <Navigate to="/auth" replace />}
-        />
-
-        {/* Auth page (login/signup) */}
-        <Route
-          path="/auth"
-          element={!user ? <AuthPage /> : <Navigate to="/" replace />}
-        />
+        <Route path="/" element={user ? <HomePage /> : <Navigate to="/auth" replace />} />
+        <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/" replace />} />
       </Routes>
     </Router>
   )
