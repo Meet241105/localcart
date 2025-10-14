@@ -1,6 +1,9 @@
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export function Categories() {
   const categories = [
@@ -11,42 +14,70 @@ export function Categories() {
     { name: "Personal Care & Wellness", image: "/images/wellness.jpg" },
     { name: "Toys", image: "/images/toys.jpg" },
     { name: "Kitchen & Dining", image: "/images/kitchen.jpg" },
-    { name: "Regional & Cultural Crafts", image: "/images/regional-crafts.jpg" },
+    { name: "Regional & Cultural Crafts", image: "/images/cultural.jpg" },
   ]
 
-  return (
-    <section className="py-14 bg-gray-50">
-      <h2 className="text-2xl font-bold text-center text-emerald-700 mb-8">
-        Shop by Category
-      </h2>
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const visibleCount = 4
 
-      <div className="relative group max-w-6xl mx-auto">
-        {/* Horizontal scroll container */}
-        <div className="flex overflow-hidden group-hover:overflow-x-auto gap-4 px-4 sm:px-6 scroll-smooth snap-x snap-mandatory no-scrollbar">
-          {categories.map((cat) => (
+  const handlePrev = () => {
+    setCurrentIndex((prev) => Math.max(prev - visibleCount, 0))
+  }
+
+  const handleNext = () => {
+    setCurrentIndex((prev) =>
+      Math.min(prev + visibleCount, categories.length - visibleCount)
+    )
+  }
+
+  const visibleCategories = categories.slice(currentIndex, currentIndex + visibleCount)
+
+  return (
+    <section className="py-12 bg-gray-50 w-full">
+      <div className="container mx-auto px-6 relative">
+        {/* Header with Buttons */}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-emerald-700">
+            Shop by Category
+          </h2>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handlePrev}
+              disabled={currentIndex === 0}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleNext}
+              disabled={currentIndex + visibleCount >= categories.length}
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Category Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 transition-all duration-300">
+          {visibleCategories.map((cat) => (
             <Card
               key={cat.name}
-              className="w-[150px] sm:w-[170px] md:w-[190px] h-[180px] flex-shrink-0 snap-start hover:scale-105 transition-transform duration-300 hover:shadow-md cursor-pointer bg-white rounded-xl"
+              className="rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all cursor-pointer"
             >
-              <CardContent className="p-3 flex flex-col items-center justify-between h-full">
-                <div className="w-full h-[110px] overflow-hidden rounded-lg">
-                  <img
-                    src={cat.image}
-                    alt={cat.name}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                </div>
-                <p className="text-center mt-2 text-sm font-medium text-gray-700">
-                  {cat.name}
-                </p>
-              </CardContent>
+              <img
+                src={cat.image}
+                alt={cat.name}
+                className="w-full h-40 object-cover"
+              />
+              <p className="text-center py-3 font-medium text-gray-700 text-sm sm:text-base">
+                {cat.name}
+              </p>
             </Card>
           ))}
         </div>
-
-        {/* gradient edges for fade effect */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-gray-50 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-gray-50 to-transparent" />
       </div>
     </section>
   )

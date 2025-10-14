@@ -1,7 +1,7 @@
 
 "use client";
 import { useState, useEffect } from "react";
-import { ShoppingCart, User, Menu, LogOut } from "lucide-react";
+import { ShoppingCart, User, Menu, LogOut, ChevronDown } from "lucide-react";
 import { logoutUser } from "@/server/firebase/authService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/server/firebase/config";
