@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 "use client";
 import { useState, useEffect } from "react";
 import { ShoppingCart, User, Menu, LogOut } from "lucide-react";
@@ -6,21 +6,13 @@ import { logoutUser } from "@/server/firebase/authService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/server/firebase/config";
 import { useNavigate } from "react-router-dom";
-=======
-"use client"
-import { useState, useEffect } from "react"
-import { ShoppingCart, User, Menu, LogOut, ChevronDown } from "lucide-react"
-import { logoutUser } from "@/firebase/authService"
-import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "@/firebase/config"
-import { useNavigate } from "react-router-dom"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
->>>>>>> dd0b8e2bd43e80157b8d7015d96e99bdb4c32cb2
+
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
