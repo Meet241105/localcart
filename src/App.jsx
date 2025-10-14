@@ -2,13 +2,14 @@ import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/server/firebase/config";
-
-import AuthPage from "@/pages/AuthPage";
+import Register from "@/pages/Register";
+import Login from "@/pages/Login";
 import HomePage from "@/pages/HomePage";
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -25,18 +26,22 @@ export default function App() {
       </div>
     );
 
-  return (
-    <Router>
+ return (
+    <div className={darkMode ? "dark" : ""}>
       <Routes>
         <Route
-          path="/"
-          element={user ? <HomePage /> : <Navigate to="/auth" replace />}
+          path="/login"
+          element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />}
         />
         <Route
-          path="/auth"
-          element={!user ? <AuthPage /> : <Navigate to="/" replace />}
+          path="/register"
+          element={<Register darkMode={darkMode} setDarkMode={setDarkMode} />}
+        />
+        <Route
+          path="/"
+          element={user ? <HomePage /> : <Navigate to="/login" replace />}
         />
       </Routes>
-    </Router>
+    </div>
   );
 }
