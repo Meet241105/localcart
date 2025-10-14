@@ -1,4 +1,3 @@
-
 "use client";
 import { useState, useEffect } from "react";
 import { ShoppingCart, User, Menu, LogOut, ChevronDown } from "lucide-react";
@@ -11,8 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
+} from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,13 +32,13 @@ export function Navbar() {
   };
 
   const categories = [
-    "Home & Decor",
-    "Fashion & Apparel",
-    "Jewelry & Accessories",
-    "Handicrafts & Gifts",
-    "Personal Care & Wellness",
-    "Toys",
-    "Kitchen & Dining",
+    { label: "Home & Decor", path: "/home-decor" },
+    { label: "Fashion & Apparel", path: "/fashion" },
+    { label: "Jewelry & Accessories", path: "/jewelry" },
+    { label: "Handicrafts & Gifts", path: "/gifts" },
+    { label: "Kitchen & Dining", path: "/kitchen-dining" },
+    { label: "Toys", path: "/toys" },
+    { label: "Personal Care & Wellness", path: "/personal-care" },
   ];
 
   return (
@@ -123,13 +121,13 @@ export function Navbar() {
       <div className="bg-emerald-600 text-white text-sm font-medium overflow-x-auto">
         <div className="flex items-center gap-6 px-4 py-2 min-w-max">
           {categories.map((cat) => (
-            <a
-              key={cat}
-              href="#"
+            <button
+              key={cat.label}
+              onClick={() => cat.path !== "#" && navigate(cat.path)}
               className="whitespace-nowrap hover:text-yellow-300 transition"
             >
-              {cat}
-            </a>
+              {cat.label}
+            </button>
           ))}
 
           {/* Regional & Cultural Crafts Dropdown */}
@@ -173,12 +171,12 @@ export function Navbar() {
           <ul className="space-y-2">
             {categories.map((cat) => (
               <li key={cat}>
-                <a
-                  href="#"
-                  className="block text-gray-700 hover:text-emerald-600"
+                <button
+                  onClick={() => cat.path !== "#" && navigate(cat.path)}
+                  className="w-full text-left text-gray-700 hover:text-emerald-600"
                 >
-                  {cat}
-                </a>
+                  {cat.label}
+                </button>
               </li>
             ))}
             <li>

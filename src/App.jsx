@@ -1,10 +1,22 @@
-import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/server/firebase/config";
 import Register from "@/pages/Register";
 import Login from "@/pages/Login";
 import HomePage from "@/pages/HomePage";
+import HomeDecor from "@/pages/HomeDecor";
+import Fashion from "@/pages/Fashion";
+import Jewelry from "@/pages/Jewelry";
+import Gifts from "@/pages/Gifts";
+import KitchenDining from "@/pages/KitchenDining";
+import Toys from "@/pages/Toys";
+import PersonalCare from "@/pages/PersonalCare";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -26,7 +38,7 @@ export default function App() {
       </div>
     );
 
- return (
+  return (
     <div className={darkMode ? "dark" : ""}>
       <Routes>
         <Route
@@ -41,6 +53,13 @@ export default function App() {
           path="/"
           element={user ? <HomePage /> : <Navigate to="/login" replace />}
         />
+        <Route path="/home-decor" element={<HomeDecor />} />
+        <Route path="/fashion" element={<Fashion />} />
+        <Route path="/jewelry" element={<Jewelry />} />
+        <Route path="/gifts" element={<Gifts />} />
+        <Route path="/kitchen-dining" element={<KitchenDining />} />
+        <Route path="/toys" element={<Toys />} />
+        <Route path="/personal-care" element={<PersonalCare />} />
       </Routes>
     </div>
   );

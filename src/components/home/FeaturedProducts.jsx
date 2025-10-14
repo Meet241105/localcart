@@ -1,10 +1,10 @@
 export function FeaturedProducts() {
   const products = [
-    { name: "Handmade Vase", price: "$20", image: "/images/vase.jpg" },
-    { name: "Wool Scarf", price: "$15", image: "/images/scarf.jpg" },
-    { name: "Beaded Necklace", price: "$25", image: "/images/necklace.jpg" },
-    { name: "Clay Pot", price: "$18", image: "/images/pot.jpg" },
-  ]
+    { name: "Handmade Vase", price: "$20", image: "/images/handmadevase.jpeg" },
+    { name: "Wool Scarf", price: "$15", image: "/images/wool.jpeg" },
+    { name: "Beaded Necklace", price: "$25", image: "/images/beads.jpg" },
+    { name: "Clay Pot", price: "$18", image: "/images/pot.jpeg" },
+  ];
 
   return (
     <section className="py-12">
@@ -20,7 +20,7 @@ export function FeaturedProducts() {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-40 object-cover"
+              className="w-full h-auto max-h-60 object-cover "
             />
             <div className="p-3">
               <p className="font-semibold">{product.name}</p>
@@ -30,5 +30,5 @@ export function FeaturedProducts() {
         ))}
       </div>
     </section>
-  )
+  );
 }
