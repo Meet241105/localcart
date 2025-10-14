@@ -1,34 +1,45 @@
-import { useState } from "react"
-import { registerUser, loginUser } from "../firebase/authService"
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { registerUser, loginUser } from "../server/firebase/authService";
+import { saveUserToFirestore } from "../server/firebase/firestoreService";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError("")
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setLoading(true);
     try {
       if (isLogin) {
-        await loginUser(email, password)
+        const loggedInUser = await loginUser(email, password);
+        alert("Logged in successfully!");
+        navigate("/");
       } else {
-        await registerUser(email, password)
+        const newUser = await registerUser(email, password);
+        await saveUserToFirestore(newUser.user);
+        alert("Registered successfully!");
+        navigate("/");
       }
-      navigate("/") // Redirect to landing page after success
     } catch (err) {
-      setError(err.message)
+      setError(err.message);
     }
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
@@ -56,7 +67,9 @@ export default function AuthPage() {
               required
               className="text-lg py-2"
             />
-            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+            {error && (
+              <p className="text-red-500 text-sm text-center">{error}</p>
+            )}
             <Button
               type="submit"
               disabled={loading}
@@ -78,5 +91,5 @@ export default function AuthPage() {
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }

@@ -1,29 +1,29 @@
-"use client"
-import { useState, useEffect } from "react"
-import { ShoppingCart, User, Menu, LogOut } from "lucide-react"
-import { logoutUser } from "@/firebase/authService"
-import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "@/firebase/config"
-import { useNavigate } from "react-router-dom"
+"use client";
+import { useState, useEffect } from "react";
+import { ShoppingCart, User, Menu, LogOut } from "lucide-react";
+import { logoutUser } from "@/server/firebase/authService";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/server/firebase/config";
+import { useNavigate } from "react-router-dom";
 
 export function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [user, setUser] = useState(null)
-  const navigate = useNavigate()
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   // Detect auth state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-    })
-    return () => unsubscribe()
-  }, [])
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   // Logout
   const handleLogout = async () => {
-    await logoutUser()
-    navigate("/auth")
-  }
+    await logoutUser();
+    navigate("/auth");
+  };
 
   const categories = [
     "Home & Decor",
@@ -33,7 +33,7 @@ export function Navbar() {
     "Personal Care & Wellness",
     "Toys",
     "Kitchen & Dining",
-  ]
+  ];
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -144,5 +144,5 @@ export function Navbar() {
         </div>
       )}
     </nav>
-  )
+  );
 }
