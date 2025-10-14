@@ -14,24 +14,32 @@ export default function HomeDecor() {
   ];
 
   const promos = [
-    { title: "Festive Torans", subtitle: "Extra 10% off", img: "/images/placeholder-hero-1.jpg" },
-    { title: "Hand-painted Wall Art", subtitle: "New arrivals", img: "/images/placeholder-hero-2.jpg" },
-    { title: "Eco Decor Picks", subtitle: "Under ₹999", img: "/images/placeholder-hero-3.jpg" },
+    { title: "Festive Torans", subtitle: "Extra 10% off", img: "/images/.jpg" },
+    { title: "Hand-painted Wall Art", subtitle: "New arrivals", img: "/images/.jpg" },
+    { title: "Eco Decor Picks", subtitle: "Under ₹999", img: "/images/.jpg" },
   ];
 
-  const products = Array.from({ length: 12 }).map((_, i) => ({
-    id: i + 1,
-    name: `Decor Item ${i + 1}`,
-    price: 899 + i * 50,
-    image: `/images/placeholder-${(i % 4) + 1}.jpg`,
-    badge: i % 3 === 0 ? "Eco" : i % 3 === 1 ? "Festive" : "New",
-  }));
+  // Updated products array with images and badges
+  const products = [
+    { id: 1, name: "Terracotta Vase", price: 999, image: "/images/product-vase.jpg", badge: "Eco" },
+    { id: 2, name: "Hand-painted Wall Plate", price: 1299, image: "/images/product-plate.jpg", badge: "Festive" },
+    { id: 3, name: "Wooden Sculpture", price: 1599, image: "/images/product-sculpture.jpg", badge: "New" },
+    { id: 4, name: "Aromatic Candle", price: 499, image: "/images/product-candle.jpg", badge: "Eco" },
+    { id: 5, name: "Wall Hanging", price: 799, image: "/images/product-hanging.jpg", badge: "Festive" },
+    { id: 6, name: "Brass Figurine", price: 1199, image: "/images/product-figurine.jpg", badge: "New" },
+    { id: 7, name: "Handwoven Basket", price: 699, image: "/images/product-basket.jpg", badge: "Eco" },
+    { id: 8, name: "Decorative Lamp", price: 1499, image: "/images/product-lamp.jpg", badge: "Festive" },
+    { id: 9, name: "Miniature Painting", price: 1099, image: "/images/product-painting.jpg", badge: "New" },
+    { id: 10, name: "Fragrance Diffuser", price: 899, image: "/images/product-diffuser.jpg", badge: "Eco" },
+    { id: 11, name: "Cushion Cover Set", price: 599, image: "/images/product-cushion.jpg", badge: "Festive" },
+    { id: 12, name: "Handcrafted Tray", price: 1299, image: "/images/product-tray.jpg", badge: "New" },
+  ];
 
   return (
     <>
       <Navbar />
       <main className="container mx-auto px-4 sm:px-8 py-8">
-        {/* Promo carousel (simple) */}
+        {/* Promo carousel */}
         <section className="relative rounded-xl overflow-hidden bg-gradient-to-r from-emerald-100 via-white to-emerald-50">
           <div className="grid md:grid-cols-2 gap-0">
             <div className="px-6 py-10 sm:py-14">
@@ -88,12 +96,12 @@ export default function HomeDecor() {
           <h2 className="text-lg font-semibold text-gray-800 mb-3">Shop by Category</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { t: "Wall Art", img: "/images/placeholder-cat-1.jpg" },
-              { t: "Hangings", img: "/images/placeholder-cat-2.jpg" },
-              { t: "Sculptures", img: "/images/placeholder-cat-3.jpg" },
-              { t: "Furniture", img: "/images/placeholder-cat-4.jpg" },
-              { t: "Fragrance", img: "/images/placeholder-cat-5.jpg" },
-              { t: "Personalized", img: "/images/placeholder-cat-6.jpg" },
+              { t: "Wall Art", img: "/images/beads.jpg" },
+              { t: "Hangings", img: "/images/decor.jpg" },
+              { t: "Sculptures", img: "/images/fashion.jpg" },
+              { t: "Furniture", img: "/images/handmadevase.jpeg" },
+              { t: "Fragrance", img: "/images/jewelry.jpg" },
+              { t: "Personalized", img: "/images/pot.jpeg" },
             ].map((c) => (
               <div key={c.t} className="bg-white shadow rounded-md overflow-hidden text-center">
                 <img src={c.img} alt={c.t} className="w-full h-24 object-cover" />
@@ -204,6 +212,7 @@ export default function HomeDecor() {
           </div>
         </section>
 
+        {/* Home Fragrance */}
         <section className="mt-10">
           <h2 className="text-lg font-semibold text-gray-800 mb-3">
             Home Fragrance
