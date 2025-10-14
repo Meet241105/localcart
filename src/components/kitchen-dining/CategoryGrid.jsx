@@ -9,3 +9,4 @@ export function CategoryGrid({ categories }) {
     </div>
   );
 }
+

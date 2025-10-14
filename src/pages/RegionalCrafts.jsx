@@ -662,7 +662,6 @@ export default function RegionalCrafts() {
                 <ProductCard
                   key={product.id}
                   product={product}
-                  onAddClick={(p) => console.log("Added to cart:", p)}
                   showBadge={false}
                 />
               ))}

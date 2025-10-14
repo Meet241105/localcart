@@ -17,3 +17,4 @@ export function SidebarCategories({ categories, title = "Categories" }) {
     </aside>
   );
 }
+

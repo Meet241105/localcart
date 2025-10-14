@@ -164,11 +164,7 @@ export default function Fashion() {
           />
           <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {items.map((p) => (
-              <ProductCard
-                key={p.id}
-                product={p}
-                onAddClick={(product) => console.log("Added to cart:", product)}
-              />
+              <ProductCard key={p.id} product={p} />
             ))}
           </div>
         </section>

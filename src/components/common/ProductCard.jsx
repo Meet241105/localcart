@@ -1,3 +1,5 @@
+import { useCart } from "@/contexts/CartContext";
+
 export function ProductCard({
   product,
   onAddClick,
@@ -5,13 +7,14 @@ export function ProductCard({
   showAddButton = true,
   isSpecial = false,
 }) {
+  const { addToCart } = useCart();
+
   const handleAddToCart = () => {
     if (onAddClick) {
       onAddClick(product);
     } else {
-      // Default cart functionality if no custom handler provided
-      console.log("Added to cart:", product);
-      // You can implement default cart logic here
+      // Use the cart context to add the product
+      addToCart(product);
     }
   };
 

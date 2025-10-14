@@ -218,11 +218,7 @@ export default function HomeDecor() {
         {/* Product grid */}
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-6">
           {products.slice(0, 4).map((p) => (
-            <ProductCard
-              key={p.id}
-              product={p}
-              onAddClick={(product) => console.log("Added to cart:", product)}
-            />
+            <ProductCard key={p.id} product={p} />
           ))}
         </section>
 
@@ -232,49 +228,39 @@ export default function HomeDecor() {
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               {
+                id: "flash-sale-1",
                 name: "Wall Art Set",
                 price: 899,
                 originalPrice: 1299,
                 img: "/images/wall art.jpg",
+                badge: "Sale",
               },
               {
+                id: "flash-sale-2",
                 name: "Decorative Vase",
                 price: 599,
                 originalPrice: 799,
                 img: "/images/vase.jpg",
+                badge: "Sale",
               },
               {
+                id: "flash-sale-3",
                 name: "Ceramic Plate",
                 price: 399,
                 originalPrice: 599,
                 img: "/images/platesss.jpg",
+                badge: "Sale",
               },
               {
+                id: "flash-sale-4",
                 name: "Wooden Sculpture",
                 price: 1299,
                 originalPrice: 1599,
                 img: "/images/wooden.jpg",
+                badge: "Sale",
               },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="rounded-md overflow-hidden border bg-white shadow-sm"
-              >
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-full h-28 object-cover"
-                />
-                <div className="p-2 text-sm">
-                  <p className="font-medium">{item.name}</p>
-                  <p className="text-emerald-700">
-                    ₹{item.price}{" "}
-                    <span className="text-gray-400 line-through ml-1">
-                      ₹{item.originalPrice}
-                    </span>
-                  </p>
-                </div>
-              </div>
+            ].map((item) => (
+              <ProductCard key={item.id} product={item} showBadge={true} />
             ))}
           </div>
         </section>

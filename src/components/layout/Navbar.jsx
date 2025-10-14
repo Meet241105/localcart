@@ -5,6 +5,7 @@ import { logoutUser } from "@/server/firebase/authService";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/server/firebase/config";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +17,7 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const { getCartCount } = useCart();
 
   // Detect auth state
   useEffect(() => {
@@ -28,7 +30,7 @@ export function Navbar() {
   // Logout
   const handleLogout = async () => {
     await logoutUser();
-    navigate("/auth");
+    navigate("/login");
   };
 
   const categories = [
@@ -86,7 +88,7 @@ export function Navbar() {
             </>
           ) : (
             <button
-              onClick={() => navigate("/auth")}
+              onClick={() => navigate("/login")}
               className="flex items-center gap-1 hover:text-emerald-600"
             >
               <User size={20} />
@@ -96,10 +98,15 @@ export function Navbar() {
 
           <button
             onClick={() => navigate("/cart")}
-            className="flex items-center gap-1 hover:text-emerald-600"
+            className="flex items-center gap-1 hover:text-emerald-600 relative"
           >
             <ShoppingCart size={20} />
             <span className="hidden sm:inline text-sm">Cart</span>
+            {getCartCount() > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                {getCartCount()}
+              </span>
+            )}
           </button>
 
           <button

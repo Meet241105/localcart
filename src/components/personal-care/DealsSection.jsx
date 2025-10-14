@@ -24,3 +24,4 @@ export function DealsSection({ title, description, buttonText, images }) {
     </div>
   );
 }
+

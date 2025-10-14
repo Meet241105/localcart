@@ -62,3 +62,4 @@ export function TechniqueGrid({ techniques, activeTab, onTabChange }) {
     </div>
   );
 }
+

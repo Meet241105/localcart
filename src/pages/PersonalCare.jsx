@@ -108,12 +108,7 @@ export default function PersonalCare() {
           </div>
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {deals.map((d) => (
-              <ProductCard
-                key={d.id}
-                product={d}
-                showBadge={false}
-                onAddClick={(product) => console.log("Added to cart:", product)}
-              />
+              <ProductCard key={d.id} product={d} showBadge={false} />
             ))}
           </div>
         </section>

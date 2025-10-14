@@ -13,3 +13,4 @@ export function SidebarWidget({ title, image, description, className = "" }) {
     </div>
   );
 }
+

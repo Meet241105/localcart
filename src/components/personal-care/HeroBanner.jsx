@@ -30,3 +30,4 @@ export function HeroBanner({ title, image, buttons }) {
     </div>
   );
 }
+

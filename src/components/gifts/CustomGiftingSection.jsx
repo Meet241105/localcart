@@ -29,3 +29,4 @@ export function CustomGiftingSection({ title, description, image, buttons }) {
     </section>
   );
 }
+

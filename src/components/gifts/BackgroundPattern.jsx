@@ -16,3 +16,4 @@ export function BackgroundPattern() {
     </div>
   );
 }
+

@@ -124,10 +124,7 @@ export default function Jewelry() {
                 buttonText="Explore Now"
                 backgroundImage="/images/jdark.jpg"
               />
-              <GalleryGrid
-                products={items.slice(0, 4)}
-                onAddClick={(product) => console.log("Added to cart:", product)}
-              />
+              <GalleryGrid products={items.slice(0, 4)} />
             </div>
           </section>
         </div>

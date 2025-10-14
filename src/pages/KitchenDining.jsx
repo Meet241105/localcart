@@ -165,7 +165,6 @@ export default function KitchenDining() {
           tabs={["New", "Trending", "Best Sellers"]}
           activeTab={activeTab}
           onTabChange={setActiveTab}
-          onAddClick={(product) => console.log("Added to cart:", product)}
         />
       </main>
       <Footer />

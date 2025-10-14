@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/server/firebase/config";
+import { CartProvider } from "@/contexts/CartContext";
 import Register from "@/pages/Register";
 import Login from "@/pages/Login";
 import HomePage from "@/pages/HomePage";
@@ -42,38 +43,40 @@ export default function App() {
     );
 
   return (
-    <div className={darkMode ? "dark" : ""}>
-      <Routes>
-        <Route
-          path="/login"
-          element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />}
-        />
-        <Route
-          path="/register"
-          element={<Register darkMode={darkMode} setDarkMode={setDarkMode} />}
-        />
-        <Route
-          path="/"
-          element={user ? <HomePage /> : <Navigate to="/login" replace />}
-        />
-        <Route
-          path="/cart"
-          element={<Cart darkMode={darkMode} setDarkMode={setDarkMode} />}
-        />
-        <Route
-          path="/checkout"
-          element={<Checkout darkMode={darkMode} setDarkMode={setDarkMode} />}
-        />
+    <CartProvider>
+      <div className={darkMode ? "dark" : ""}>
+        <Routes>
+          <Route
+            path="/login"
+            element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />}
+          />
+          <Route
+            path="/register"
+            element={<Register darkMode={darkMode} setDarkMode={setDarkMode} />}
+          />
+          <Route
+            path="/"
+            element={user ? <HomePage /> : <Navigate to="/login" replace />}
+          />
+          <Route
+            path="/cart"
+            element={<Cart darkMode={darkMode} setDarkMode={setDarkMode} />}
+          />
+          <Route
+            path="/checkout"
+            element={<Checkout darkMode={darkMode} setDarkMode={setDarkMode} />}
+          />
 
-        <Route path="/home-decor" element={<HomeDecor />} />
-        <Route path="/fashion" element={<Fashion />} />
-        <Route path="/jewelry" element={<Jewelry />} />
-        <Route path="/gifts" element={<Gifts />} />
-        <Route path="/kitchen-dining" element={<KitchenDining />} />
-        <Route path="/toys" element={<Toys />} />
-        <Route path="/personal-care" element={<PersonalCare />} />
-        <Route path="/regional-crafts" element={<RegionalCrafts />} />
-      </Routes>
-    </div>
+          <Route path="/home-decor" element={<HomeDecor />} />
+          <Route path="/fashion" element={<Fashion />} />
+          <Route path="/jewelry" element={<Jewelry />} />
+          <Route path="/gifts" element={<Gifts />} />
+          <Route path="/kitchen-dining" element={<KitchenDining />} />
+          <Route path="/toys" element={<Toys />} />
+          <Route path="/personal-care" element={<PersonalCare />} />
+          <Route path="/regional-crafts" element={<RegionalCrafts />} />
+        </Routes>
+      </div>
+    </CartProvider>
   );
 }

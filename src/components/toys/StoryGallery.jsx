@@ -12,3 +12,4 @@ export function StoryGallery({ images }) {
     </div>
   );
 }
+

@@ -50,3 +50,4 @@ export function ArtisanStory({ artisan }) {
     </div>
   );
 }
+

@@ -86,7 +86,6 @@ export default function Gifts() {
               <ProductCard
                 key={p.id}
                 product={p}
-                onAddClick={(product) => console.log("Added to cart:", product)}
                 showBadge={false}
                 isSpecial={index === 3}
               />

@@ -125,12 +125,7 @@ export default function Toys() {
           <SectionHeader title="Most Popular" />
           <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {popular.map((p) => (
-              <ProductCard
-                key={p.id}
-                product={p}
-                onAddClick={(product) => console.log("Added to cart:", product)}
-                showBadge={false}
-              />
+              <ProductCard key={p.id} product={p} showBadge={false} />
             ))}
           </div>
         </section>

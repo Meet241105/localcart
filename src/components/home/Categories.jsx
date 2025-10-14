@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export function Categories() {
   const categories = [
-    { name: "Home & Decor", image: "/images/decor.jpg" },
+    { name: "Home & Decor", image: "/images/Decorative Items.jpg" },
     { name: "Fashion & Apparel", image: "/images/fashion.jpg" },
     { name: "Jewelry & Accessories", image: "/images/jewelry.jpg" },
     { name: "Handicrafts & Gifts", image: "/images/handicraft.jpg" },

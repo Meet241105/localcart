@@ -9,7 +9,6 @@ export function ClassyProducts({
   tabs,
   activeTab,
   onTabChange,
-  onAddClick,
 }) {
   return (
     <section id="classy-products">
@@ -23,12 +22,7 @@ export function ClassyProducts({
       </div>
       <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-5">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddClick={onAddClick}
-            showBadge={false}
-          />
+          <ProductCard key={product.id} product={product} showBadge={false} />
         ))}
       </div>
     </section>

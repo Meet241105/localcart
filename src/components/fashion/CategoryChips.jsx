@@ -12,3 +12,4 @@ export function CategoryChips({ categories }) {
     </section>
   );
 }
+

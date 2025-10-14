@@ -1,51 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Trash2, Plus, Minus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
 
 export default function Cart({ darkMode }) {
   const navigate = useNavigate();
+  const { cartItems, updateQuantity, removeFromCart, getCartTotal } = useCart();
 
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Handcrafted Clay Pot",
-      image: "/images/decor.jpg",
-      price: 499,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Bamboo Lamp",
-      image: "/images/pot.jpeg",
-      price: 799,
-      quantity: 2,
-    },
-  ]);
-
-  const updateQuantity = (id, delta) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) =>
-          item.id === id
-            ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
+  const handleUpdateQuantity = (id, delta) => {
+    const item = cartItems.find((item) => item.id === id);
+    if (item) {
+      const newQuantity = item.quantity + delta;
+      updateQuantity(id, newQuantity);
+    }
   };
 
-  const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const total = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const total = getCartTotal();
 
   return (
     <div
@@ -80,7 +53,7 @@ export default function Cart({ darkMode }) {
                 >
                   <div className="flex items-center space-x-4">
                     <img
-                      src={item.image}
+                      src={item.img || item.image}
                       alt={item.name}
                       className="w-20 h-20 object-cover rounded-lg"
                     />
@@ -93,7 +66,7 @@ export default function Cart({ darkMode }) {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => updateQuantity(item.id, -1)}
+                          onClick={() => handleUpdateQuantity(item.id, -1)}
                         >
                           <Minus size={16} />
                         </Button>
@@ -101,7 +74,7 @@ export default function Cart({ darkMode }) {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => updateQuantity(item.id, 1)}
+                          onClick={() => handleUpdateQuantity(item.id, 1)}
                         >
                           <Plus size={16} />
                         </Button>
@@ -116,7 +89,7 @@ export default function Cart({ darkMode }) {
                     <Button
                       variant="destructive"
                       size="icon"
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                     >
                       <Trash2 size={18} />
                     </Button>
