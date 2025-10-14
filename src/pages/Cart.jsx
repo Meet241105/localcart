@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Trash2, Plus, Minus } from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Trash2, Plus, Minus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart({ darkMode }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([
     {
@@ -24,7 +24,7 @@ export default function Cart({ darkMode }) {
       price: 799,
       quantity: 2,
     },
-  ])
+  ]);
 
   const updateQuantity = (id, delta) => {
     setCartItems((prev) =>
@@ -35,17 +35,17 @@ export default function Cart({ darkMode }) {
             : item
         )
         .filter((item) => item.quantity > 0)
-    )
-  }
+    );
+  };
 
   const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id))
-  }
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
-  )
+  );
 
   return (
     <div
@@ -142,7 +142,10 @@ export default function Cart({ darkMode }) {
                 >
                   Continue Shopping
                 </Button>
-                <Button onClick={() => navigate("/checkout")} className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                <Button
+                  onClick={() => navigate("/checkout")}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
                   Proceed to Checkout
                 </Button>
               </div>
@@ -151,5 +154,5 @@ export default function Cart({ darkMode }) {
         )}
       </div>
     </div>
-  )
+  );
 }

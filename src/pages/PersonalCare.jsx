@@ -1,21 +1,42 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ProductCard } from "@/components/common/ProductCard";
+import { SectionHeader } from "@/components/common/SectionHeader";
+import { CategoryStrip } from "@/components/personal-care/CategoryStrip";
+import { HeroBanner } from "@/components/personal-care/HeroBanner";
+import { SidebarCategories } from "@/components/personal-care/SidebarCategories";
+import { DealsSection } from "@/components/personal-care/DealsSection";
+import { SidebarWidget } from "@/components/personal-care/SidebarWidget";
 
 export default function PersonalCare() {
   const strip = [
-    { t: "Skincare", img: "/images/images (1).jpeg" },
-    { t: "Haircare", img: "/images/images (2).jpeg" },
-    { t: "Wellness", img: "/images/images (3).jpeg" },
-    { t: "Soaps", img: "/images/images (4).jpeg" },
-    { t: "Tees", img: "/images/fashion.jpg" },
+    { t: "Skincare", img: "/images/b1.jpeg" },
+    { t: "Haircare", img: "/images/b2.jpeg" },
+    { t: "Wellness", img: "/images/b3.jpeg" },
+    { t: "Soaps", img: "/images/b4.jpeg" },
+    { t: "Tees", img: "/images/p5.jpg" },
   ];
 
-  const deals = Array.from({ length: 8 }).map((_, i) => ({
-    id: i + 1,
-    name: `Deal ${i + 1}`,
-    price: 299 + i * 50,
-    img: `/images/gift-${(i % 4) + 1}.jpg`,
-  }));
+  const deals = [
+    {
+      id: 1,
+      name: "Deal 1",
+      price: 299,
+      img: "/images/b1.jpeg",
+    },
+    {
+      id: 2,
+      name: "Deal 2",
+      price: 349,
+      img: "/images/b2.jpeg",
+    },
+    {
+      id: 3,
+      name: "Deal 3",
+      price: 399,
+      img: "/images/b3.jpeg",
+    },
+  ];
 
   const leftCats = [
     "Traditional Wear",
@@ -34,138 +55,65 @@ export default function PersonalCare() {
   return (
     <>
       <Navbar />
-      <main className="container mx-auto px-4 sm:px-8 py-8">
+      <main className="container mx-auto px-6 sm:px-8 lg:px-12 py-8 space-y-12">
         {/* Pastel category strip + hero */}
         <section>
-          <div className="grid grid-cols-5 gap-2">
-            {strip.map((s) => (
-              <div
-                key={s.t}
-                className="rounded-xl overflow-hidden border border-emerald-50 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
-              >
-                <img
-                  src={s.img}
-                  alt={s.t}
-                  className="w-full h-20 object-cover"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="mt-4 rounded-2xl overflow-hidden bg-[#efe9e2]">
-            <div className="relative h-48 sm:h-64 flex items-center justify-center text-center">
-              <img
-                src="/images/decor.jpg"
-                className="absolute inset-0 w-full h-full object-cover opacity-20"
-              />
-              <div className="relative">
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-                  Socks For Summer Look
-                </h1>
-                <div className="mt-3 flex gap-3 justify-center">
-                  <button className="bg-emerald-600 text-white text-sm px-4 py-2 rounded-md">
-                    Shop Women
-                  </button>
-                  <button className="border text-sm px-4 py-2 rounded-md">
-                    Shop Men
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CategoryStrip categories={strip} />
+          <HeroBanner
+            title="Personal Care & Wellness"
+            image="/images/b4.jpeg"
+            buttons={[
+              { text: "Shop Women", primary: true },
+              { text: "Shop Men", primary: false },
+            ]}
+          />
         </section>
 
         {/* Dashboard grid: left categories, center promos, right sidebar */}
-        <section className="mt-8 grid grid-cols-12 gap-4">
+        <section className="grid grid-cols-12 gap-4">
           {/* Left */}
-          <aside className="hidden sm:block col-span-3 bg-white rounded-xl border shadow-sm">
-            <ul className="p-3 text-sm space-y-2">
-              {leftCats.map((c) => (
-                <li
-                  key={c}
-                  className="py-1 px-2 rounded hover:bg-emerald-50 cursor-pointer"
-                >
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </aside>
+          <SidebarCategories categories={leftCats} />
 
           {/* Center */}
           <div className="col-span-12 sm:col-span-6 grid gap-4">
-            <div className="rounded-xl overflow-hidden bg-emerald-50 p-6 shadow-sm">
-              <h3 className="text-2xl font-semibold text-gray-800">
-                More Deals Inside
-                <br />
-                Up to 50% Off
-              </h3>
-              <button className="mt-4 px-4 py-2 rounded-md bg-emerald-600 text-white text-sm">
-                Wishlist Now
-              </button>
-            </div>
-            <div className="grid grid-cols-4 gap-3">
-              <img
-                src="/images/images (1).jpeg"
-                className="h-24 w-full object-cover rounded-lg shadow"
-              />
-              <img
-                src="/images/images (2).jpeg"
-                className="h-24 w-full object-cover rounded-lg shadow"
-              />
-              <img
-                src="/images/images (3).jpeg"
-                className="h-24 w-full object-cover rounded-lg shadow"
-              />
-              <img
-                src="/images/images (4).jpeg"
-                className="h-24 w-full object-cover rounded-lg shadow"
-              />
-            </div>
+            <DealsSection
+              title="More Deals Inside"
+              description="Up to 50% Off"
+              buttonText="Wishlist Now"
+              images={[
+                "/images/p5.jpg",
+                "/images/p6.jpg",
+                "/images/b1.jpeg",
+                "/images/b2.jpeg",
+              ]}
+            />
           </div>
 
           {/* Right sidebar */}
           <aside className="hidden sm:block col-span-3 space-y-4">
-            <div className="bg-white rounded-xl border p-4 shadow-sm">
-              <h4 className="font-semibold text-gray-800">Recently Viewed</h4>
-              <img
-                src="/images/91rPf6CMOiL._UF350,350_QL80_.jpg"
-                className="mt-3 w-full h-28 object-cover rounded-md shadow"
-              />
-            </div>
-            <div className="bg-white rounded-xl border p-4 shadow-sm">
-              <h4 className="font-semibold text-gray-800">
-                Suggestions for You
-              </h4>
-              <img
-                src="/images/jewelry.jpg"
-                className="mt-3 w-full h-28 object-cover rounded-md shadow"
-              />
-              <p className="mt-2 text-sm text-gray-600">Watch more</p>
-            </div>
+            <SidebarWidget title="Recently Viewed" image="/images/b3.jpeg" />
+            <SidebarWidget
+              title="Suggestions for You"
+              image="/images/p6.jpg"
+              description="Watch more"
+            />
           </aside>
         </section>
 
         {/* Deals of the Day */}
-        <section className="mt-8">
+        <section>
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-gray-800">Deals of the Day</h3>
+            <SectionHeader title="Deals of the Day" />
             <span className="text-sm text-red-600">20 : 45 : 12 Left</span>
           </div>
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-4">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {deals.map((d) => (
-              <div
+              <ProductCard
                 key={d.id}
-                className="bg-white rounded-md overflow-hidden border border-emerald-50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all"
-              >
-                <img
-                  src={d.img}
-                  alt={d.name}
-                  className="w-full h-32 object-cover"
-                />
-                <div className="p-3 text-xs">
-                  <p className="font-medium truncate">{d.name}</p>
-                  <p className="mt-1 text-emerald-700">₹{d.price}</p>
-                </div>
-              </div>
+                product={d}
+                showBadge={false}
+                onAddClick={(product) => console.log("Added to cart:", product)}
+              />
             ))}
           </div>
         </section>

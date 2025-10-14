@@ -94,9 +94,10 @@ export function Navbar() {
             </button>
           )}
 
-          <button onClick={() => navigate("/cart")}
- 
-          className="flex items-center gap-1 hover:text-emerald-600">
+          <button
+            onClick={() => navigate("/cart")}
+            className="flex items-center gap-1 hover:text-emerald-600"
+          >
             <ShoppingCart size={20} />
             <span className="hidden sm:inline text-sm">Cart</span>
           </button>
@@ -145,22 +146,58 @@ export function Navbar() {
               className="bg-white text-gray-700 rounded-md shadow-md mt-1"
             >
               <DropdownMenuItem
-                onClick={() => navigate("/crafts/state-region")}
+                onClick={() => navigate("/regional-crafts")}
+                className="cursor-pointer hover:bg-emerald-50 font-semibold"
+              >
+                View All Crafts
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  if (window.location.pathname === "/regional-crafts") {
+                    const element = document.getElementById("by-state");
+                    element?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  } else {
+                    navigate("/regional-crafts#by-state");
+                  }
+                }}
                 className="cursor-pointer hover:bg-emerald-50"
               >
                 By State / Region
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => navigate("/crafts/technique-material")}
+                onClick={() => {
+                  if (window.location.pathname === "/regional-crafts") {
+                    const element = document.getElementById("by-technique");
+                    element?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  } else {
+                    navigate("/regional-crafts#by-technique");
+                  }
+                }}
                 className="cursor-pointer hover:bg-emerald-50"
               >
                 By Technique / Material
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => navigate("/crafts/product-type")}
+                onClick={() => {
+                  if (window.location.pathname === "/regional-crafts") {
+                    const element = document.getElementById("artisan-stories");
+                    element?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  } else {
+                    navigate("/regional-crafts#artisan-stories");
+                  }
+                }}
                 className="cursor-pointer hover:bg-emerald-50"
               >
-                By Product Type / Speciality
+                Meet Our Artisans
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -190,7 +227,30 @@ export function Navbar() {
                   <li>
                     <a
                       href="#"
-                      onClick={() => navigate("/crafts/state-region")}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate("/regional-crafts");
+                      }}
+                      className="block hover:text-emerald-600 font-semibold"
+                    >
+                      View All Crafts
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (window.location.pathname === "/regional-crafts") {
+                          const element = document.getElementById("by-state");
+                          element?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                        } else {
+                          navigate("/regional-crafts#by-state");
+                        }
+                      }}
                       className="block hover:text-emerald-600"
                     >
                       By State / Region
@@ -199,7 +259,19 @@ export function Navbar() {
                   <li>
                     <a
                       href="#"
-                      onClick={() => navigate("/crafts/technique-material")}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (window.location.pathname === "/regional-crafts") {
+                          const element =
+                            document.getElementById("by-technique");
+                          element?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                        } else {
+                          navigate("/regional-crafts#by-technique");
+                        }
+                      }}
                       className="block hover:text-emerald-600"
                     >
                       By Technique / Material
@@ -208,10 +280,22 @@ export function Navbar() {
                   <li>
                     <a
                       href="#"
-                      onClick={() => navigate("/crafts/product-type")}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (window.location.pathname === "/regional-crafts") {
+                          const element =
+                            document.getElementById("artisan-stories");
+                          element?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                        } else {
+                          navigate("/regional-crafts#artisan-stories");
+                        }
+                      }}
                       className="block hover:text-emerald-600"
                     >
-                      By Product Type / Speciality
+                      Meet Our Artisans
                     </a>
                   </li>
                 </ul>

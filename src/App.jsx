@@ -17,6 +17,7 @@ import Gifts from "@/pages/Gifts";
 import KitchenDining from "@/pages/KitchenDining";
 import Toys from "@/pages/Toys";
 import PersonalCare from "@/pages/PersonalCare";
+import RegionalCrafts from "@/pages/RegionalCrafts";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 
@@ -60,8 +61,8 @@ export default function App() {
           element={<Cart darkMode={darkMode} setDarkMode={setDarkMode} />}
         />
         <Route
-         path="/checkout"
-         element={<Checkout darkMode={darkMode} setDarkMode={setDarkMode} />}
+          path="/checkout"
+          element={<Checkout darkMode={darkMode} setDarkMode={setDarkMode} />}
         />
 
         <Route path="/home-decor" element={<HomeDecor />} />
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="/kitchen-dining" element={<KitchenDining />} />
         <Route path="/toys" element={<Toys />} />
         <Route path="/personal-care" element={<PersonalCare />} />
+        <Route path="/regional-crafts" element={<RegionalCrafts />} />
       </Routes>
     </div>
   );
