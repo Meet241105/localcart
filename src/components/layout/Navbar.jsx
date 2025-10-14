@@ -1,10 +1,16 @@
 "use client"
 import { useState, useEffect } from "react"
-import { ShoppingCart, User, Menu, LogOut } from "lucide-react"
+import { ShoppingCart, User, Menu, LogOut, ChevronDown } from "lucide-react"
 import { logoutUser } from "@/firebase/authService"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "@/firebase/config"
 import { useNavigate } from "react-router-dom"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -123,6 +129,39 @@ export function Navbar() {
               {cat}
             </a>
           ))}
+
+          {/* Regional & Cultural Crafts Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="flex items-center gap-1 hover:text-yellow-300 transition focus:outline-none">
+                Regional & Cultural Crafts
+                <ChevronDown size={16} />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="bg-white text-gray-700 rounded-md shadow-md mt-1"
+            >
+              <DropdownMenuItem
+                onClick={() => navigate("/crafts/state-region")}
+                className="cursor-pointer hover:bg-emerald-50"
+              >
+                By State / Region
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => navigate("/crafts/technique-material")}
+                className="cursor-pointer hover:bg-emerald-50"
+              >
+                By Technique / Material
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => navigate("/crafts/product-type")}
+                className="cursor-pointer hover:bg-emerald-50"
+              >
+                By Product Type / Speciality
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
@@ -140,6 +179,42 @@ export function Navbar() {
                 </a>
               </li>
             ))}
+            <li>
+              <details className="text-gray-700">
+                <summary className="cursor-pointer hover:text-emerald-600">
+                  Regional & Cultural Crafts
+                </summary>
+                <ul className="pl-4 mt-2 space-y-1">
+                  <li>
+                    <a
+                      href="#"
+                      onClick={() => navigate("/crafts/state-region")}
+                      className="block hover:text-emerald-600"
+                    >
+                      By State / Region
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={() => navigate("/crafts/technique-material")}
+                      className="block hover:text-emerald-600"
+                    >
+                      By Technique / Material
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={() => navigate("/crafts/product-type")}
+                      className="block hover:text-emerald-600"
+                    >
+                      By Product Type / Speciality
+                    </a>
+                  </li>
+                </ul>
+              </details>
+            </li>
           </ul>
         </div>
       )}
