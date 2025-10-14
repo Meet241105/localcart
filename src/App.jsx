@@ -17,6 +17,8 @@ import Gifts from "@/pages/Gifts";
 import KitchenDining from "@/pages/KitchenDining";
 import Toys from "@/pages/Toys";
 import PersonalCare from "@/pages/PersonalCare";
+import Cart from "@/pages/Cart";
+import Checkout from "@/pages/Checkout";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -53,6 +55,15 @@ export default function App() {
           path="/"
           element={user ? <HomePage /> : <Navigate to="/login" replace />}
         />
+        <Route
+          path="/cart"
+          element={<Cart darkMode={darkMode} setDarkMode={setDarkMode} />}
+        />
+        <Route
+         path="/checkout"
+         element={<Checkout darkMode={darkMode} setDarkMode={setDarkMode} />}
+        />
+
         <Route path="/home-decor" element={<HomeDecor />} />
         <Route path="/fashion" element={<Fashion />} />
         <Route path="/jewelry" element={<Jewelry />} />

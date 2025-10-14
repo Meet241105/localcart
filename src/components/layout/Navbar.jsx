@@ -94,7 +94,9 @@ export function Navbar() {
             </button>
           )}
 
-          <button className="flex items-center gap-1 hover:text-emerald-600">
+          <button onClick={() => navigate("/cart")}
+ 
+          className="flex items-center gap-1 hover:text-emerald-600">
             <ShoppingCart size={20} />
             <span className="hidden sm:inline text-sm">Cart</span>
           </button>
