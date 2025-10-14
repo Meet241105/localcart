@@ -114,7 +114,7 @@ export default function KitchenDining() {
             {tiles.map((c) => (
               <div
                 key={c.t}
-                className="relative rounded-xl overflow-hidden group"
+                className="relative rounded-xl overflow-hidden group border border-emerald-50 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
               >
                 <img
                   src={c.img}
@@ -154,7 +154,7 @@ export default function KitchenDining() {
             {classy.map((p) => (
               <div
                 key={p.id}
-                className="bg-white shadow rounded-md overflow-hidden"
+                className="bg-white rounded-md overflow-hidden border border-emerald-50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <img
                   src={p.img}

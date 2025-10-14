@@ -63,7 +63,7 @@ export default function Gifts() {
             {products.map((p) => (
               <div
                 key={p.id}
-                className="bg-white shadow rounded-md overflow-hidden"
+                className="bg-white rounded-md overflow-hidden border border-emerald-50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <img
                   src={p.img}
@@ -107,7 +107,7 @@ export default function Gifts() {
             {featured.map((p) => (
               <div
                 key={p.id}
-                className="bg-white shadow rounded-md overflow-hidden"
+                className="bg-white rounded-md overflow-hidden border border-emerald-50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <img
                   src={p.img}
@@ -137,7 +137,7 @@ export default function Gifts() {
             {subs.map((s) => (
               <div
                 key={s.t}
-                className="bg-white shadow rounded-md overflow-hidden text-center"
+                className="bg-white rounded-md overflow-hidden text-center border border-emerald-50 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
               >
                 <img
                   src={s.img}

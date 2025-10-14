@@ -39,7 +39,10 @@ export default function PersonalCare() {
         <section>
           <div className="grid grid-cols-5 gap-2">
             {strip.map((s) => (
-              <div key={s.t} className="rounded-xl overflow-hidden">
+              <div
+                key={s.t}
+                className="rounded-xl overflow-hidden border border-emerald-50 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+              >
                 <img
                   src={s.img}
                   alt={s.t}
@@ -74,7 +77,7 @@ export default function PersonalCare() {
         {/* Dashboard grid: left categories, center promos, right sidebar */}
         <section className="mt-8 grid grid-cols-12 gap-4">
           {/* Left */}
-          <aside className="hidden sm:block col-span-3 bg-white rounded-xl border">
+          <aside className="hidden sm:block col-span-3 bg-white rounded-xl border shadow-sm">
             <ul className="p-3 text-sm space-y-2">
               {leftCats.map((c) => (
                 <li
@@ -89,7 +92,7 @@ export default function PersonalCare() {
 
           {/* Center */}
           <div className="col-span-12 sm:col-span-6 grid gap-4">
-            <div className="rounded-xl overflow-hidden bg-emerald-50 p-6">
+            <div className="rounded-xl overflow-hidden bg-emerald-50 p-6 shadow-sm">
               <h3 className="text-2xl font-semibold text-gray-800">
                 More Deals Inside
                 <br />
@@ -102,39 +105,39 @@ export default function PersonalCare() {
             <div className="grid grid-cols-4 gap-3">
               <img
                 src="/images/images (1).jpeg"
-                className="h-24 w-full object-cover rounded-lg"
+                className="h-24 w-full object-cover rounded-lg shadow"
               />
               <img
                 src="/images/images (2).jpeg"
-                className="h-24 w-full object-cover rounded-lg"
+                className="h-24 w-full object-cover rounded-lg shadow"
               />
               <img
                 src="/images/images (3).jpeg"
-                className="h-24 w-full object-cover rounded-lg"
+                className="h-24 w-full object-cover rounded-lg shadow"
               />
               <img
                 src="/images/images (4).jpeg"
-                className="h-24 w-full object-cover rounded-lg"
+                className="h-24 w-full object-cover rounded-lg shadow"
               />
             </div>
           </div>
 
           {/* Right sidebar */}
           <aside className="hidden sm:block col-span-3 space-y-4">
-            <div className="bg-white rounded-xl border p-4">
+            <div className="bg-white rounded-xl border p-4 shadow-sm">
               <h4 className="font-semibold text-gray-800">Recently Viewed</h4>
               <img
                 src="/images/91rPf6CMOiL._UF350,350_QL80_.jpg"
-                className="mt-3 w-full h-28 object-cover rounded-md"
+                className="mt-3 w-full h-28 object-cover rounded-md shadow"
               />
             </div>
-            <div className="bg-white rounded-xl border p-4">
+            <div className="bg-white rounded-xl border p-4 shadow-sm">
               <h4 className="font-semibold text-gray-800">
                 Suggestions for You
               </h4>
               <img
                 src="/images/jewelry.jpg"
-                className="mt-3 w-full h-28 object-cover rounded-md"
+                className="mt-3 w-full h-28 object-cover rounded-md shadow"
               />
               <p className="mt-2 text-sm text-gray-600">Watch more</p>
             </div>
@@ -151,7 +154,7 @@ export default function PersonalCare() {
             {deals.map((d) => (
               <div
                 key={d.id}
-                className="bg-white rounded-md shadow overflow-hidden"
+                className="bg-white rounded-md overflow-hidden border border-emerald-50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <img
                   src={d.img}
