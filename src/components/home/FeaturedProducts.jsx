@@ -5,19 +5,19 @@ export function FeaturedProducts() {
     {
       id: "featured-1",
       name: "Handmade Vase",
-      price: 20,
+      price: 200,
       img: "/images/handmadevase.jpeg",
     },
     {
       id: "featured-2",
       name: "Wool Scarf",
-      price: 15,
+      price: 150,
       img: "/images/wool.jpeg",
     },
     {
       id: "featured-3",
       name: "Beaded Necklace",
-      price: 25,
+      price: 240,
       img: "/images/beads.jpg",
     },
     { id: "featured-4", name: "Clay Pot", price: 18, img: "/images/pot.jpeg" },
