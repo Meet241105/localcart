@@ -125,6 +125,10 @@ export default function Fashion() {
           title="Up to 50% OFF"
           description="Redefine your everyday style"
           primaryButtonText="Shop Deals"
+          onPrimaryClick={() => {
+            const element = document.getElementById("popular-categories");
+            element?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
           backgroundImage="/images/fashion.jpg"
         />
 

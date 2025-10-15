@@ -11,10 +11,10 @@ export function Categories() {
     { name: "Fashion & Apparel", image: "/images/fashion.jpg" },
     { name: "Jewelry & Accessories", image: "/images/jewelry.jpg" },
     { name: "Handicrafts & Gifts", image: "/images/handicraft.jpg" },
-    { name: "Personal Care & Wellness", image: "/images/wellness.jpg" },
-    { name: "Toys", image: "/images/toys.jpg" },
-    { name: "Kitchen & Dining", image: "/images/kitchen.jpg" },
-    { name: "Regional & Cultural Crafts", image: "/images/cultural.jpg" },
+    { name: "Personal Care & Wellness", image: "/images/b2.jpeg" },
+    { name: "Toys", image: "/images/t4.jpeg" },
+    { name: "Kitchen & Dining", image: "/images/d6.jpg" },
+    { name: "Regional & Cultural Crafts", image: "/images/craft art (1).jpg" },
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)

@@ -24,7 +24,7 @@ export function FeaturedProducts() {
   ];
 
   return (
-    <section className="py-12">
+    <section id="featured-products" className="py-12">
       <h2 className="text-2xl font-bold text-center text-emerald-700 mb-8">
         Featured Products
       </h2>

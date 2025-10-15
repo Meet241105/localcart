@@ -47,7 +47,17 @@ export default function Jewelry() {
                   everyday grace. Handcrafted with love by local artisans.
                 </p>
                 <div className="mt-6 flex gap-4">
-                  <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-md text-sm font-medium transition">
+                  <button
+                    onClick={() => {
+                      const element =
+                        document.getElementById("featured-products");
+                      element?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-md text-sm font-medium transition"
+                  >
                     Shop Now
                   </button>
                   <button

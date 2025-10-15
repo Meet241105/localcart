@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 export function HeroSection() {
   return (
@@ -27,12 +27,15 @@ export function HeroSection() {
             and skill — from décor to jewelry, fashion, and beyond.
           </p>
 
-          <a
-            href="#shop"
+          <button
+            onClick={() => {
+              const element = document.getElementById("featured-products");
+              element?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
             className="inline-block bg-emerald-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-emerald-700 transition"
           >
             Shop Now
-          </a>
+          </button>
         </div>
 
         {/* Right Section (Hero Image) */}
@@ -45,5 +48,5 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
