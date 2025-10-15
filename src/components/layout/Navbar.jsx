@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,11 +53,9 @@ export function Navbar() {
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => navigate("/")}
         >
-          <img
-            src="/logo.png"
-            alt="LocalKart Logo"
-            className="w-8 h-8 object-cover rounded-full"
-          />
+  <Avatar className="h-10 w-10 bg-green-100 text-green-700 font-semibold">
+    <AvatarFallback>LK</AvatarFallback>
+  </Avatar>
           <h1 className="text-xl font-bold text-emerald-600 tracking-wide">
             LocalKart
           </h1>
