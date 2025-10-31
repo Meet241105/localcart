@@ -21,6 +21,8 @@ import PersonalCare from "@/pages/PersonalCare";
 import RegionalCrafts from "@/pages/RegionalCrafts";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -77,6 +79,9 @@ export default function App() {
           <Route path="/regional-crafts" element={<RegionalCrafts />} />
         </Routes>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} theme="colored" />
     </CartProvider>
+    
+    
   );
 }
