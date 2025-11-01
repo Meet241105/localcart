@@ -68,7 +68,7 @@ export default function Checkout({ darkMode }) {
       clearCart()
       //toast
       toast.success("Order placed successfully!")
-      navigate("/")
+      setTimeout(() => navigate("/"), 1500)
     } catch (error) {
       console.error("Error placing order:", error)
       //toast error
