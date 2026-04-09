@@ -4,9 +4,10 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "@/contexts/UserContext"
 import { useAdmin } from "@/contexts/AdminContext"
-import { Moon, Sun, Mail, Lock, Eye, EyeOff } from "lucide-react"
+import { Mail, Lock, Eye, EyeOff } from "lucide-react"
 
-export default function Login({ darkMode, setDarkMode }) {
+export default function Login() {
+  const darkMode = false
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -48,20 +49,6 @@ export default function Login({ darkMode, setDarkMode }) {
         : "bg-gradient-to-br from-emerald-50 via-white to-emerald-100 text-gray-800"
         }`}
     >
-      {/* Theme Toggle */}
-      <div className="absolute top-6 right-6">
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 rounded-full border border-emerald-400/40 hover:bg-emerald-100 dark:hover:bg-neutral-700 transition"
-        >
-          {darkMode ? (
-            <Sun className="h-5 w-5 text-emerald-400" />
-          ) : (
-            <Moon className="h-5 w-5 text-emerald-600" />
-          )}
-        </button>
-      </div>
-
       {/* Main Content */}
       <main className="flex-1 flex items-center justify-center px-4 py-10">
         <div className="w-full max-w-md space-y-8">
